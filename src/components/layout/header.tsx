@@ -98,13 +98,13 @@ export function Header() {
 
               {/* Dropdown Menu */}
               <div className="absolute left-0 top-full mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
-                <div className="bg-popover rounded-md border shadow-md">
+                <div className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/95 rounded-md border shadow-lg">
                   <div className="p-2">
                     {item.items.map((subItem) => (
                       <Link
                         key={subItem.href}
                         href={subItem.href}
-                        className="block px-3 py-2 text-sm text-foreground/80 hover:bg-accent hover:text-accent-foreground rounded-sm transition-colors"
+                        className="block px-3 py-2 text-base text-foreground/80 hover:bg-accent hover:text-accent-foreground rounded-sm transition-colors"
                       >
                         {subItem.name}
                       </Link>
