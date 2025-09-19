@@ -1,25 +1,39 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Copy, RefreshCw, Shield, CheckCircle, AlertCircle } from "lucide-react";
+import {
+  Copy,
+  RefreshCw,
+  Shield,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 
 const metadata: Metadata = {
   title: "Gerador de CPF - Gere CPFs Válidos para Testes | Ferramentas Online",
-  description: "Gerador de CPF online gratuito. Gere CPFs válidos para testes e desenvolvimento de sistemas. Ferramenta rápida e segura, sem armazenamento de dados.",
-  keywords: ["gerador cpf", "cpf válido", "gerar cpf", "cpf para teste", "validar cpf"],
+  description:
+    "Gerador de CPF online gratuito. Gere CPFs válidos para testes e desenvolvimento de sistemas. Ferramenta rápida e segura, sem armazenamento de dados.",
+  keywords: [
+    "gerador cpf",
+    "cpf válido",
+    "gerar cpf",
+    "cpf para teste",
+    "validar cpf",
+  ],
   openGraph: {
     title: "Gerador de CPF - Gere CPFs Válidos para Testes",
-    description: "Gerador de CPF online gratuito. Gere CPFs válidos para testes e desenvolvimento de sistemas.",
+    description:
+      "Gerador de CPF online gratuito. Gere CPFs válidos para testes e desenvolvimento de sistemas.",
     url: "/gerador-cpf",
   },
 };
 
 const breadcrumbItems = [
   { label: "Geradores", href: "/geradores" },
-  { label: "Gerador de CPF", href: "/gerador-cpf" }
+  { label: "Gerador de CPF", href: "/gerador-cpf" },
 ];
 
 // Função para gerar CPF válido
@@ -48,38 +62,41 @@ function generateCPF(): string {
   const secondDigit = remainder < 2 ? 0 : 11 - remainder;
   digits.push(secondDigit);
 
-  return digits.join('');
+  return digits.join("");
 }
 
 // Função para formatar CPF
 function formatCPF(cpf: string): string {
-  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
 }
 
 const toolSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Gerador de CPF",
-  description: "Ferramenta online gratuita para gerar CPFs válidos para testes e desenvolvimento",
-  url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://localhost:3000"}/gerador-cpf`,
+  description:
+    "Ferramenta online gratuita para gerar CPFs válidos para testes e desenvolvimento",
+  url: `${
+    process.env.NEXT_PUBLIC_SITE_URL || "https://localhost:3000"
+  }/gerador-cpf`,
   applicationCategory: "UtilityApplication",
   operatingSystem: "Any",
   permissions: "browser",
   offers: {
     "@type": "Offer",
     price: "0",
-    priceCurrency: "BRL"
+    priceCurrency: "BRL",
   },
   featureList: [
     "Geração de CPF válido",
     "Formatação automática",
     "Cópia rápida",
-    "Sem armazenamento de dados"
-  ]
+    "Sem armazenamento de dados",
+  ],
 };
 
 export default function GeradorCPF() {
-  const [cpf, setCpf] = useState('');
+  const [cpf, setCpf] = useState("");
   const [copied, setCopied] = useState(false);
   const [generated, setGenerated] = useState(false);
 
@@ -97,7 +114,7 @@ export default function GeradorCPF() {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } catch (err) {
-        console.error('Erro ao copiar:', err);
+        console.error("Erro ao copiar:", err);
       }
     }
   };
@@ -105,10 +122,10 @@ export default function GeradorCPF() {
   return (
     <>
       <JsonLd data={toolSchema} />
-      
+
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Breadcrumb items={breadcrumbItems} />
-        
+
         <div className="space-y-8">
           {/* Header */}
           <div className="text-center space-y-4">
@@ -116,7 +133,7 @@ export default function GeradorCPF() {
               Gerador de CPF
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Gere CPFs válidos para testes e desenvolvimento de sistemas. 
+              Gere CPFs válidos para testes e desenvolvimento de sistemas.
               Ferramenta gratuita, rápida e segura.
             </p>
           </div>
@@ -141,7 +158,9 @@ export default function GeradorCPF() {
                   <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                     <div className="flex items-center justify-between">
                       <div className="space-y-2">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">CPF Gerado:</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          CPF Gerado:
+                        </p>
                         <p className="text-2xl font-mono font-bold text-gray-900 dark:text-white">
                           {formatCPF(cpf)}
                         </p>
@@ -149,9 +168,9 @@ export default function GeradorCPF() {
                       <button
                         onClick={handleCopy}
                         className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                          copied 
-                            ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                            : 'bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-gray-300'
+                          copied
+                            ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                            : "bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-gray-300"
                         }`}
                       >
                         {copied ? (
@@ -182,9 +201,10 @@ export default function GeradorCPF() {
                   Importante - Uso Responsável
                 </h3>
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  Este CPF é válido matematicamente, mas não pertence a nenhuma pessoa real. 
-                  Use apenas para testes, desenvolvimento de sistemas ou demonstrações. 
-                  Não utilize para fins fraudulentos ou ilegais.
+                  Este CPF é válido matematicamente, mas não pertence a nenhuma
+                  pessoa real. Use apenas para testes, desenvolvimento de
+                  sistemas ou demonstrações. Não utilize para fins fraudulentos
+                  ou ilegais.
                 </p>
               </div>
             </div>
@@ -196,27 +216,33 @@ export default function GeradorCPF() {
               <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg">
                 <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="font-medium text-gray-900 dark:text-white">Seguro</h3>
+              <h3 className="font-medium text-gray-900 dark:text-white">
+                Seguro
+              </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Não armazenamos nenhum dado gerado
               </p>
             </div>
-            
+
             <div className="text-center space-y-3">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg">
                 <CheckCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="font-medium text-gray-900 dark:text-white">Válido</h3>
+              <h3 className="font-medium text-gray-900 dark:text-white">
+                Válido
+              </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 CPFs matematicamente corretos
               </p>
             </div>
-            
+
             <div className="text-center space-y-3">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg">
                 <RefreshCw className="h-6 w-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="font-medium text-gray-900 dark:text-white">Rápido</h3>
+              <h3 className="font-medium text-gray-900 dark:text-white">
+                Rápido
+              </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Geração instantânea a qualquer momento
               </p>
@@ -228,35 +254,38 @@ export default function GeradorCPF() {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               Perguntas Frequentes
             </h2>
-            
+
             <div className="space-y-4">
               <details className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                 <summary className="p-4 cursor-pointer font-medium text-gray-900 dark:text-white">
                   O CPF gerado é real?
                 </summary>
                 <div className="px-4 pb-4 text-gray-600 dark:text-gray-400">
-                  Não, o CPF é válido matematicamente (passa na validação do algoritmo), 
-                  mas não pertence a nenhuma pessoa real. É gerado aleatoriamente apenas para testes.
+                  Não, o CPF é válido matematicamente (passa na validação do
+                  algoritmo), mas não pertence a nenhuma pessoa real. É gerado
+                  aleatoriamente apenas para testes.
                 </div>
               </details>
-              
+
               <details className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                 <summary className="p-4 cursor-pointer font-medium text-gray-900 dark:text-white">
                   É seguro usar esta ferramenta?
                 </summary>
                 <div className="px-4 pb-4 text-gray-600 dark:text-gray-400">
-                  Sim, a ferramenta roda inteiramente no seu navegador. Não enviamos nem 
-                  armazenamos nenhum dado gerado em nossos servidores.
+                  Sim, a ferramenta roda inteiramente no seu navegador. Não
+                  enviamos nem armazenamos nenhum dado gerado em nossos
+                  servidores.
                 </div>
               </details>
-              
+
               <details className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
                 <summary className="p-4 cursor-pointer font-medium text-gray-900 dark:text-white">
                   Para que posso usar o CPF gerado?
                 </summary>
                 <div className="px-4 pb-4 text-gray-600 dark:text-gray-400">
-                  Apenas para testes de sistemas, desenvolvimento de software, preenchimento 
-                  de formulários de teste, demonstrações e fins educacionais.
+                  Apenas para testes de sistemas, desenvolvimento de software,
+                  preenchimento de formulários de teste, demonstrações e fins
+                  educacionais.
                 </div>
               </details>
             </div>
