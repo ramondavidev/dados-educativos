@@ -49,8 +49,8 @@ export function Hero() {
                 <Zap className="h-6 w-6 text-blue-600 dark:text-blue-400" />
               </div>
               <div className="text-center">
-                <h3 className="font-semibold text-sm">Geradores</h3>
-                <p className="text-xs text-muted-foreground mt-1">
+                <h3 className="font-semibold text-xl">Geradores</h3>
+                <p className="text-base text-muted-foreground mt-1">
                   CPF, CNPJ, Senhas
                 </p>
               </div>
@@ -66,8 +66,8 @@ export function Hero() {
                 <Shield className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
               <div className="text-center">
-                <h3 className="font-semibold text-sm">Validadores</h3>
-                <p className="text-xs text-muted-foreground mt-1">
+                <h3 className="font-semibold text-xl">Validadores</h3>
+                <p className="text-base text-muted-foreground mt-1">
                   Email, Telefone
                 </p>
               </div>
@@ -83,8 +83,8 @@ export function Hero() {
                 <CalcIcon className="h-6 w-6 text-purple-600 dark:text-purple-400" />
               </div>
               <div className="text-center">
-                <h3 className="font-semibold text-sm">Calculadoras</h3>
-                <p className="text-xs text-muted-foreground mt-1">
+                <h3 className="font-semibold text-xl">Calculadoras</h3>
+                <p className="text-base text-muted-foreground mt-1">
                   Juros, IMC, Férias
                 </p>
               </div>
@@ -100,8 +100,8 @@ export function Hero() {
                 <RefreshCw className="h-6 w-6 text-orange-600 dark:text-orange-400" />
               </div>
               <div className="text-center">
-                <h3 className="font-semibold text-sm">Conversores</h3>
-                <p className="text-xs text-muted-foreground mt-1">
+                <h3 className="font-semibold text-xl">Conversores</h3>
+                <p className="text-base text-muted-foreground mt-1">
                   Moedas, Medidas
                 </p>
               </div>

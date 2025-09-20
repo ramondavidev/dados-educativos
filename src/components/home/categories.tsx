@@ -88,7 +88,7 @@ export function Categories() {
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
           Todas as Categorias
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Explore nossa coleção completa de ferramentas organizadas por
           categoria
         </p>
@@ -111,10 +111,10 @@ export function Categories() {
                   >
                     <Icon className={`h-6 w-6 ${colors.icon}`} />
                   </div>
-                  <h3 className="font-semibold text-lg">{category.title}</h3>
+                  <h3 className="font-semibold text-xl">{category.title}</h3>
                 </div>
 
-                <p className="text-muted-foreground text-sm mb-4 flex-1">
+                <p className="text-muted-foreground text-lg mb-4 flex-1">
                   {category.description}
                 </p>
 
@@ -122,7 +122,7 @@ export function Categories() {
                   {category.tools.map((tool) => (
                     <div
                       key={tool}
-                      className="text-xs text-muted-foreground flex items-center"
+                      className="text-base text-muted-foreground flex items-center"
                     >
                       <div className="w-1 h-1 bg-muted-foreground/40 rounded-full mr-2" />
                       {tool}
